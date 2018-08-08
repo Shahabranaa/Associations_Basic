@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_024038) do
+ActiveRecord::Schema.define(version: 2018_08_08_213014) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -22,18 +22,11 @@ ActiveRecord::Schema.define(version: 2018_08_08_024038) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-  create_table "authors", force: :cascade do |t|
-    t.string "name"
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.integer "author_id"
-    t.datetime "published_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -98,7 +91,9 @@ ActiveRecord::Schema.define(version: 2018_08_08_024038) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
+    t.string "email"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
