@@ -15,4 +15,26 @@ class User < ApplicationRecord
   validates :password, :confirmation => true #password_confirmation attr
   validates_length_of :password, :in => 6..20, :on => :create
 
+  after_initialize do |user|
+    puts "You have initialized an object!"
+  end
+
+  after_find do |user|
+    puts "You have found an object!"
+  end
+
+  after_touch do |user|
+   puts "You have touched an object"
+  end
+
+  #after_create_commit :log_user_saved_to_db
+  after_commit :log_user_saved_to_db, on: [:create, :update]
+
+   private
+   def log_user_saved_to_db
+     puts 'User was saved to database'
+   end
+
+
+
 end
